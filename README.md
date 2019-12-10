@@ -17,7 +17,11 @@ A classification model that leverages data web-scraped from Reddit and applies N
 
 * r/awardtravel is a place to discuss burning airline miles and hotel points.
 
+# Notebook Links
 
+  * [Model and Insights](https://github.com/payalchodha/Reddit-Post-Classification/blob/master/model%20and%20insights.ipynb)
+  * [Sub-reddit Extraction](https://github.com/payalchodha/Reddit-Post-Classification/blob/master/subreddit%20extraction.ipynb)
+  
 # Executive Summary
 The project started by scraping r/travel and r/awardtravel for data. The process of extracting from reddit is fairly simple: 
  *  A basic request set up to access the API
@@ -25,7 +29,7 @@ I managed to scrape about 15,000 posts in total.
 
 I made an app on reddit to register and get the keys and password using praw.To extract the title and selftext,I used PushshiftAPI. Once I extracted the titlw and selftext (as body). Then I began the process of cleaning up the data. The cleaning process was fairly simple, as it mostly consisted of dropping null values, stripping all text that was not composed of letters, removing emojis,replacing the [removed] and [deleted] values with nothing. The last major cleaning step I did was to concatenate together the title and body for each post,because if there was no body the title became the body. I then saved the dataframes to a csv file so I could model cleaned data.
 
-So,during preprocessing I remove the urls and links too.Then I combined the dataframes for both the subreddits,as it would be easier to modelthat ways. And then I looked at what are the common words that occurred most frequently and added those words to the list of stop words. The last preprocessing step I took was to lemmatize the text; lemmatizing  reduces every word to its dictionary value and is a bit gentle that stemming.
+So,during preprocessing I removed the urls and links too.Then I combined the dataframes for both the subreddits,as it would be easier to model that ways. And then I looked at the common words that occurred most frequently and added those words to the list of stop words. The last preprocessing step I took was to lemmatize the text; lemmatizing  reduces every word to its dictionary value and is a bit gentle than stemming.
 
 I ran each model twice: once with count vectorization and once with TFIDF vectorization
 Every model was optimized with grid-searching(to tune the hyperparameters in a better way)
@@ -35,7 +39,7 @@ Models that I considered were:
 3. Random Forest
 Once I had my best parameters and best estimator I made a confusion matrix(the confusion gives the clearest visualization of how the model treats each class in the data).I also generated an ROC-AUC curve.
 
-Then I also wanted to test my model on an unseen data.So I also pulled some extra data and from reddit API,stored it in the test.csv and tested my model on that.It performed very good on that.
+Then, I also wanted to test my model on an unseen data.So I also pulled some extra data from reddit API,stored it in the test.csv and tested my model on that.It performed very good on that.
 
 # DATA dictionaries:
 |Feature|Type|API|Description|
